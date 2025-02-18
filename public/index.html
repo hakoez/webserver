@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, initial-scale=0.3">
+
+    <title>Güncel Fiyatlar - Knight, Nowa, Rise Online</title>
+    <link rel="stylesheet" href="/css/style1.css?v=1">
+</head>
+<body>
+    <img src="logos/knightkadin.webp" alt="Knight Kadın" class="knight-kadin mobilde-gizle">
+    <!-- Sol Menü (Logo ve Navigasyon) -->
+    <div class="sidebar">
+        <a href="./">
+            <img src="/logos/sitelogo.webp" alt="Site Logosu" class="site-logo-main">
+        </a>
+        <nav>
+            <ul>
+                <li><a href="./"><img src="logos/home.webp" alt="Anasayfa"> Anasayfa</a></li>
+                <li><a href="knight"><img src="logos/knightbut.webp" alt="Knight Online"> Knight Online</a></li>
+                <li><a href="rise"><img src="logos/risebut.webp" alt="Rise Online"> Rise Online</a></li>
+                <li><a href="nowa"><img src="logos/nowabut.webp" alt="Nowa World"> Nowa World</a></li>
+
+            </ul>
+        </nav>
+    </div>
+
+    <section id="knight">
+        <h2><img src="/logos/ko_logo.webp" alt="Knight Online" style="max-width: 250px;"></h2>
+        <table>
+            <thead>
+                <tr>
+                    <th rowspan="2" class="site-column"><img class="site-logo" src="/logos/247.webp" alt="Site Logosu"></th>
+                    <th colspan="2" class="server-header">ZERO</th>
+                    <th colspan="2" class="server-header">FELIS</th>
+                    <th colspan="2" class="server-header">AGARTHA</th>
+                    <th colspan="2" class="server-header">PANDORA</th>
+                    <th colspan="2" class="server-header">DRYADS</th>
+                    <th colspan="2" class="server-header">DESTAN</th>
+                    <th colspan="2" class="server-header">MINARK</th>
+                    <th colspan="2" class="server-header">OREADS</th>
+                </tr>
+                <tr>
+                    <th class="sub-header-satis">Satış</th><th class="sub-header-alis">Alış</th>
+                    <th class="sub-header-satis">Satış</th><th class="sub-header-alis">Alış</th>
+                    <th class="sub-header-satis">Satış</th><th class="sub-header-alis">Alış</th>
+                    <th class="sub-header-satis">Satış</th><th class="sub-header-alis">Alış</th>
+                    <th class="sub-header-satis">Satış</th><th class="sub-header-alis">Alış</th>
+                    <th class="sub-header-satis">Satış</th><th class="sub-header-alis">Alış</th>
+                    <th class="sub-header-satis">Satış</th><th class="sub-header-alis">Alış</th>
+                    <th class="sub-header-satis">Satış</th><th class="sub-header-alis">Alış</th>
+                </tr>
+            </thead>
+            <tbody id="knight-table"></tbody>
+        </table>
+    </section>
+
+    <section id="nowa">
+        <h2><img src="/logos/nowa_logo.webp" alt="Nowa Online" style="max-width: 250px;"></h2>
+        <table>
+            <thead>
+                <tr>
+                    <th rowspan="2" class="site-column"><img class="site-logo" src="/logos/247.webp" alt="Site Logosu"></th>
+                    <th colspan="2" class="server-header">ARES</th>
+                    <th colspan="2" class="server-header">FENIX</th>
+                    <th colspan="2" class="server-header">TERA</th>
+                    <th colspan="2" class="server-header">AURA</th>
+                </tr>
+                <tr>
+                    <th class="sub-header-satis">Satış</th><th class="sub-header-alis">Alış</th>
+                    <th class="sub-header-satis">Satış</th><th class="sub-header-alis">Alış</th>
+                    <th class="sub-header-satis">Satış</th><th class="sub-header-alis">Alış</th>
+                    <th class="sub-header-satis">Satış</th><th class="sub-header-alis">Alış</th>
+                </tr>
+            </thead>
+            <tbody id="nowa-table"></tbody>
+        </table>
+    </section>
+
+    <section id="rise">
+        <h2><img src="/logos/rise_logo.webp" alt="Rise Online" style="max-width: 250px;"></h2>
+        <table>
+            <thead>
+                <tr>
+                    <th rowspan="2" class="site-column"><img class="site-logo" src="/logos/247.webp" alt="Site Logosu"></th>
+                    <th colspan="2" class="server-header">GALIA</th>
+                    <th colspan="2" class="server-header">MANTIS</th>
+                    <th colspan="2" class="server-header">ARVARD</th>
+                </tr>
+                <tr>
+                    <th class="sub-header-satis">Satış</th><th class="sub-header-alis">Alış</th>
+                    <th class="sub-header-satis">Satış</th><th class="sub-header-alis">Alış</th>
+                    <th class="sub-header-satis">Satış</th><th class="sub-header-alis">Alış</th>
+                </tr>
+            </thead>
+            <tbody id="rise-table"></tbody>
+        </table>
+    </section>
+    <body>
+        <!-- Sayfanın diğer içeriği buraya gelecek -->
+    
+        <!-- Footer -->
+        <footer>
+            <p>📩 İletişim: <a href="mailto:iletisim@delosgb.com">iletisimdelosgb@gmail.com</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;👤 Günlük Ziyaretçi: <span id="visitorCount">0</span></p>
+
+            <script>
+                // Ziyaretçi sayısını al ve göster
+                function fetchVisitorCount() {
+                    fetch("/visitor-count")
+                        .then(response => response.json())
+                        .then(data => {
+                            document.getElementById("visitorCount").innerText = data.visitorCount;
+                        })
+                        .catch(error => console.error("Ziyaretçi sayısı alınamadı:", error));
+                }
+        
+                // Sayfa yüklendiğinde ve her 60 saniyede bir ziyaretçi sayısını güncelle
+                fetchVisitorCount();
+                setInterval(fetchVisitorCount, 60000); // 60 saniyede bir güncelle
+            </script>
+        </footer>
+    
+    </body>
+    </html>
+    
+    <script src="/js/script1.js?v=1" defer></script>
+    
+</body>
+</html>

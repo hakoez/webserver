@@ -1,0 +1,267 @@
+
+    /* Mobil Cihazlar İçin Menü ve Sayfa Düzeni */
+    @media (max-width: 768px) {
+        .sidebar {
+            width: 100%;
+            height: auto;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px;
+            flex-wrap: wrap;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .site-logo-main {
+            max-width: 120px; /* Mobilde logo biraz küçülsün */
+        }
+
+        .sidebar nav ul {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        .sidebar nav ul li {
+            margin: 0 10px;
+        }
+        
+        .sidebar nav ul li a {
+            padding: 8px 12px;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+                /* Eğer menü çok yer kaplıyorsa, mobilde gizlemek için */
+        .sidebar {
+            display: none; /* Mobilde menüyü gizle (İstersen butonla açılır yaparız) */
+        }
+
+        /* Mobilde menüyü açmak için buton ekleyebilirsin */
+        .menu-toggle {
+            display: block;
+            text-align: center;
+            padding: 10px;
+            background-color: #222;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+            /* 🚀 Mobilde belirli bir resmi gizlemek için eklenen kod */
+        .mobilde-gizle {
+            display: none !important;
+        }
+    }
+            
+    @keyframes breathing {
+0% {
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+50% {
+    opacity: 0.75; /* ✅ Daha fazla sönme */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 1);
+}
+100% {
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+}
+
+
+    /* === GENEL TEMA === */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #1E1E1E;
+        color: #ddd;
+        text-align: center;
+        padding: 20px;
+    }
+    h1, h2 {
+        color: #fff;
+    }
+    table {
+        width: 90%;
+        margin: auto;
+        border-collapse: collapse;
+        background: #2A2A2A;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+        overflow: hidden;
+        border-collapse: separate;  /* Çizgileri ayır, böylece spacing çalışır */
+        border-spacing: 10px; /* 🔥 Kutular arasında 5px boşluk bırak */
+    }
+    th, td {
+        border: 1px solid #444;
+        padding: 10px;
+        text-align: center;
+        vertical-align: middle;
+    }
+    .server-header {
+        background-color: #282828;
+        font-weight: bold;
+        color: white;
+    }
+    .sub-header-satis {
+        background-color: #282828;
+        font-weight: bold;
+        color: white;
+    }
+    .sub-header-alis {
+        background-color: #282828;
+        font-weight: bold;
+        color: white;
+    }
+    .site-column {
+        background-color: #282828;
+        font-weight: bold;
+        color: black;
+    }
+    .site-logo {
+        max-width: 120px;
+        height: auto;
+    }
+    tr:nth-child(even) {
+        background-color: #292929;
+    }
+    .best-buy {
+        background-color: #f12929 !important;
+        font-weight: bold;
+        color: white;
+        animation: breathing 2s infinite ease-in-out;
+        border-radius: 20px; /* Elips şekli için /
+        padding: 5px 15px; / Boyutları ayarlamak için /
+        display: inline-block; / Metni çevrelemesi için */
+    }
+    /* En düşük satış fiyatı (Yanıp sönme efekti) */
+    .best-sell {
+        background-color:  #52ff37 !important;
+        font-weight: bold;
+        color: black;
+        animation: breathing 2s infinite ease-in-out;
+        border-radius: 20px; /* Elips şekli için /
+        padding: 5px 15px; / Boyutları ayarlamak için /
+        display: inline-block; / Metni çevrelemesi için */
+    }
+        .table-container {
+        margin-left: -5px;
+    }
+    table {
+        transform: scale(0.90);
+        transform-origin: center;
+    }
+    .site-column {
+        width: 200px;
+        text-align: center;
+        white-space: nowrap;
+    }
+    .site-logo {
+        max-width: 100px;
+        height: 30px;
+    }
+    /* === SOL MENÜ STİLİ === */
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 180px;
+        height: 100vh;
+        background-color: #222;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Logo */
+    .site-logo-main {
+        max-width: 300px;
+        height: auto;
+        margin-bottom: 20px;
+        margin-left: -60px;
+    }
+
+    /* Menü Listesi */
+    .sidebar nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Menü Öğeleri */
+    .sidebar nav ul li {
+        margin: 15px 0;
+    }
+
+    /* Menü Linkleri */
+    .sidebar nav ul li a {
+        display: block;
+        padding: 10px;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 5px;
+        transition: 0.3s;
+    }
+    li a img {
+        width: 36px;  /* 2 kat büyük */
+        height: auto; /* Oranlarını korusun */
+        margin-right: 15px; /* Yazı ile logo arasına boşluk bırak */
+        vertical-align: middle; /* İkonları yazı ile aynı hizaya getir */
+        display: inline-block; /* Yan yana hizalama için */
+    }
+    li {
+        text-align: left; /* Liste elemanlarını sola hizala */
+    }
+
+    /* Knight Online ve Nowa World logolarını sola kaydır */
+    li a[href="knight"] img,
+    li a[href="nowa"] img,
+    li a[href="rise"] img {
+        margin-right: 5px; /* Bir tık sola kaydır */
+    }
+
+
+    /* Link Hover Efekti */
+    .sidebar nav ul li a:hover {
+        background-color: #444;
+    }
+    .knight-kadin {
+        position: fixed; /* Sayfanın köşesinde sabit kalmasını sağlar */
+        top: 10px; /* Sayfanın en üstünden 10px boşluk bırak */
+        right: 10px; /* Sayfanın en sağından 10px boşluk bırak */
+        width: 200px; /* Genişlik */
+        height: 200px; /* Yükseklik */
+        z-index: 1000; /* Diğer öğelerin üstünde kalmasını sağlar */
+    }
+    footer {
+        background-color: #222; /* Arka plan rengi */
+        color: #fff; /* Yazı rengi */
+        text-align: center; /* Yazıyı ortala */
+        position: fixed; /* Sayfanın en altında sabit kalsın */
+        bottom: 0;
+        width: 100%;
+        height: 30px; /* Footer'ı daralt */
+        line-height: 30px; /* Satır yüksekliğini footer yüksekliği ile eşitle */
+        font-size: 14px; /* Yazı boyutunu küçült */
+        padding: 0; /* Ekstra boşlukları kaldır */
+        overflow: hidden; /* Taşmayı engelle */
+        display: flex;
+        justify-content: center; /* Yatay ortala */
+        align-items: center; /* Dikey ortala (tam ortada gözüksün) */
+    }
+
+
+    footer a {
+        color: #ffcc00; /* Mail adresi rengi (isteğe bağlı değiştirilebilir) */
+        text-decoration: none; /* Alt çizgiyi kaldır */
+        font-weight: bold;
+    }
+
+    footer a:hover {
+        text-decoration: underline; /* Üzerine gelince alt çizgi ekle */
+    }
+

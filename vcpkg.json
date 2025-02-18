@@ -1,0 +1,24 @@
+{
+    "name": "webx",
+    "version-string": "0.1.0",
+    "dependencies": [
+        {
+            "name": "cpr"
+        },
+        {
+            "name": "nlohmann-json"
+        },
+        {
+            "name": "sqlite3"
+        },
+        {
+            "name": "cpp-httplib"
+        },
+        {
+            "name": "pugixml"
+        },
+        {
+            "name": "asio"
+        }
+    ]
+}
