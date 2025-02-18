@@ -16,12 +16,12 @@ chrome_options.add_argument("start-maximized")
 chrome_options.add_argument("disable-infobars")
 chrome_options.add_argument("--disable-blink-features=AutomationControlled")
 
-# **ChromeDriver Yolu**
+# **ChromeDriver path**
 chromedriver_path = "/usr/local/bin/chromedriver"
 service = Service(chromedriver_path)
 driver = webdriver.Chrome(service=service, options=chrome_options)
 
-# **Stealth Mode (Bot Algılamayı Engelle)**
+# **Stealth Mode **
 stealth(driver,
         languages=["en-US", "en"],
         vendor="Google Inc.",
@@ -30,10 +30,10 @@ stealth(driver,
         renderer="Intel Iris OpenGL Engine",
         fix_hairline=True)
 
-# **CSV dosya adı**
+# **CSV **
 csv_filename = "nowa_veri_raw22.csv"
 
-# **Vatangame & Klasgame Siteleri**
+# **Vatangame & Klasgame**
 sites = [
     {"name": "vatangame.com (Ares - Alış)", "url": "https://www.vatangame.com/oyun-parasi/nowa-online-world-goldbar", "method": "selenium", "xpath": "/html/body/div[4]/div/div[2]/div[2]/div/div[1]/div/div/div[3]/span/b"},
     {"name": "vatangame.com (Ares - Satış)", "url": "https://www.vatangame.com/oyun-parasi/nowa-online-world-goldbar", "method": "selenium", "xpath": "/html/body/div[4]/div/div[2]/div[2]/div/div[1]/div/div/div[4]/div/span"},
@@ -56,7 +56,7 @@ sites = [
   
 ]
 
-# **Oyuneks Siteleri (JavaScript ile XPath çekiyor)**
+# **Oyuneks**
 oyuneks_url = "https://oyuneks.com/nowa-online-world/nowa-online-world-gold"
 oyuneks_xpaths = {
     "Oyuneks (Ares - Alış)": "/html/body/div[5]/div/div/div[2]/div/div/div/div/div[1]/div/div[2]/div[2]/div/div/div[1]/div[2]/span",
@@ -69,10 +69,10 @@ oyuneks_xpaths = {
     "Oyuneks (Aura - Satış)": "/html/body/div[5]/div/div/div[2]/div/div/div/div/div[4]/div/div[2]/div[2]/div/div/div[2]/div[2]/span",
 }
 
-# **Vatangame & Klasgame için Veri Çekme**
+# **Vatangame & Klasgame**
 data = []
 for site in sites:
-    print(f"📌 {site['name']} verileri çekiliyor...")
+    print(f"📌 {site['name']} scraping...")
     try:
         driver.get(site["url"])
         time.sleep(10)
@@ -95,10 +95,10 @@ for name, xpath in oyuneks_xpaths.items():
         """
         price = driver.execute_script(script)
         price = price.strip()
-        print(f"✅ {name} için fiyat bulundu: {price}")
+        print(f"✅ {name} for price found {price}")
         oyuneks_data.append([name, datetime.now().strftime("%Y-%m-%d %H:%M:%S"), price])
     except Exception as e:
-        print(f"⚠ {name} verisi alınırken hata oluştu: {e}")
+        print(f"⚠ {name} error {e}")
 
 
 # **CSV'ye kaydetme (Tırnak yok, TL yok, oyuneks.com düzeltildi)**
@@ -106,7 +106,7 @@ with open(csv_filename, "w", newline="", encoding="utf-8") as file:
     writer = csv.writer(file)
     writer.writerow(["Site", "Server", "Satis", "Alis"])  # Başlıkları yaz
 
-    site_dict = {}  # Geçici veri saklama için sözlük
+    site_dict = {}  
     
     for row in data + oyuneks_data:
         site_name = row[0]  # Örnek: "oyuneks.com (Ares - Alış)"
@@ -119,23 +119,24 @@ with open(csv_filename, "w", newline="", encoding="utf-8") as file:
         if site.lower() == "oyuneks":
             site = "oyuneks.com"
 
-        # Sözlük yapısında saklama
+        
         key = (site, server)
         if key not in site_dict:
             site_dict[key] = {"satis": "--", "alis": "--"}  # Varsayılan değerler
 
-        # Önce satış sonra alış olacak şekilde düzenleme
+       
         price = row[2].replace(" TL", "").replace(",", ".").strip()  # TL'yi kaldır ve formatı düzelt
         if transaction_type == "Satış":
             site_dict[key]["satis"] = price
         elif transaction_type == "Alış":
             site_dict[key]["alis"] = price
 
-    # Saklanan verileri CSV'ye yaz
+   
     for (site, server), values in site_dict.items():
         writer.writerow([site, server, values["satis"], values["alis"]])
 
-print(f"✅ Tüm fiyatlar '{csv_filename}' dosyasına İSTENİLEN FORMATTA kaydedildi!")
+print(f"✅All prices '{csv_filename}' saved !")
 
 
 driver.quit()
+
