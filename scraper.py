@@ -5,24 +5,24 @@ import csv
 import time
 import os
 
-# **Chrome seçeneklerini ayarla**
+# **Chrome config**
 chrome_options = Options()
-chrome_options.add_argument("--headless")  # Arka planda çalıştır (UI olmadan)
-chrome_options.add_argument("--no-sandbox")  # Google Cloud için gerekli
-chrome_options.add_argument("--disable-dev-shm-usage")  # Bellek kullanımını azalt
-chrome_options.add_argument("--user-data-dir=/tmp/chrome-user-data")  # Yeni kullanıcı dizini
+chrome_options.add_argument("--headless")  
+chrome_options.add_argument("--no-sandbox") 
+chrome_options.add_argument("--disable-dev-shm-usage")  
+chrome_options.add_argument("--user-data-dir=/tmp/chrome-user-data") 
 
-# **ChromeDriver servis ayarı**
+# **ChromeDriver service**
 service = Service("/usr/local/bin/chromedriver")
 
-# **Tarayıcıyı başlat**
+# **start chrome**
 driver = webdriver.Chrome(service=service, options=chrome_options)
 
-# **Çıkartılacak Siteler (Hem Knight hem de Rise için)**
+
 excluded_sites = ["kabasakal.com", "tezgamepin.com"]
 
-# **1️⃣ Knight Online GB Verilerini Çek**
-print("📌 Knight Online GB verileri çekiliyor...")
+
+print("📌 Knight Online getting data...")
 driver.get("https://www.enucuzgb.com/knight-online/kogbdata")
 time.sleep(5)  # Cloudflare korumasını beklemek için
 
@@ -57,7 +57,7 @@ try:
                 alis_fiyat = satir[j * 2 + 1]
                 knight_guncel_veri_listesi.append([site_adi, knight_server_isimleri[j], satis_fiyat, alis_fiyat])
 
-    # **Knight İçin Filtreleme**
+    # **filter for knight**
     knight_guncel_veri_listesi = [veri for veri in knight_guncel_veri_listesi if veri[0] not in excluded_sites]
 
     knight_csv_dosya_adi = "knight_veri.csv"
@@ -71,11 +71,11 @@ try:
 except Exception as e:
     print(f"❌ Hata oluştu (Knight Online): {e}")
 
-# **2️⃣ Rise Online GB Verilerini Çek**
-print("📌 Rise Online GB verileri çekiliyor...")
+# **2️⃣ Rise Online Data**
+print("📌 Rise Online getting data...")
 try:
     driver.get("https://www.enucuzgb.com/rise-online/risegbdata")
-    time.sleep(5)  # Sayfanın yüklenmesini bekle
+    time.sleep(5)  
 
     tablo = driver.find_element("tag name", "table")
     satirlar = tablo.find_elements("tag name", "tr")
@@ -106,7 +106,7 @@ try:
                 alis_fiyat = satir[j * 2 + 1]
                 rise_guncel_veri_listesi.append([site_adi, rise_server_isimleri[j], satis_fiyat, alis_fiyat])
 
-    # **Rise İçin Filtreleme**
+    # *filter for rise**
     rise_guncel_veri_listesi = [veri for veri in rise_guncel_veri_listesi if veri[0] not in excluded_sites]
 
     rise_csv_dosya_adi = "rise_veri.csv"
