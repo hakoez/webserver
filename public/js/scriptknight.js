@@ -1,6 +1,6 @@
 async function fetchData() {
     try {
-        const response = await fetch("/knight-data"); // API'den veri çek
+        const response = await fetch("/knight-data"); // get data from API
         if (!response.ok) throw new Error("Veri alınamadı!");
 
         const data = await response.json();
@@ -34,7 +34,7 @@ async function fetchData() {
         let maxAlis = {};
         let minSatis = {};
 
-        // 📌 JSON Verisini Site ve Sunucu Bazında Grupla
+        // 📌 JSON data
         data.forEach(veri => {
             let serverKey = veri.server.trim().toUpperCase();
             let satisFiyat = parseFloat(veri.satis);
@@ -45,12 +45,12 @@ async function fetchData() {
             }
             siteMap[veri.site][serverKey] = { satis: satisFiyat, alis: alisFiyat };
 
-            // 🔥 En yüksek alış fiyatını bul
+           
             if (!maxAlis[serverKey] || alisFiyat > maxAlis[serverKey]) {
                 maxAlis[serverKey] = alisFiyat;
             }
 
-            // 💰 En düşük satış fiyatını bul
+           
             if (!minSatis[serverKey] || satisFiyat < minSatis[serverKey]) {
                 minSatis[serverKey] = satisFiyat;
             }
@@ -59,11 +59,11 @@ async function fetchData() {
         console.log("🔥 En yüksek alış fiyatları:", maxAlis);
         console.log("💰 En düşük satış fiyatları:", minSatis);
 
-        // 📌 Tabloyu Düzenli Şekilde Oluştur
+       
         Object.keys(siteMap)
-            .sort((a, b) => a.localeCompare(b)) // 🟢 Site isimlerini alfabetik sıraya sokuyoruz
+            .sort((a, b) => a.localeCompare(b)) // Order site names
             .forEach(site => {
-                let siteUrl = siteLinks[site] || "#"; // 🔥 Manuel site linkini kullanıyoruz
+                let siteUrl = siteLinks[site] || "#"; //links for sites
                 let logoPath = `/logos/${siteLogos[site] || "default.webp"}`;
                 let row = `<tr>
                             <td class="site-column">
