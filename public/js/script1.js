@@ -1,4 +1,4 @@
-// Knight Online Veri Çekme
+// Knight Online fetch Data
 async function fetchKnightData() {
     try {
         const response = await fetch("/knight-data");
@@ -85,7 +85,7 @@ async function fetchKnightData() {
     }
 }
 
-// Nowa Online Veri Çekme
+// Nowa Online fetch Data
 async function fetchNowaData() {
     try {
         const response = await fetch("/nowa-data");
@@ -163,7 +163,7 @@ async function fetchNowaData() {
     }
 }
 
-// Rise Online Veri Çekme
+// Rise Online fetch Data
 async function fetchRiseData() {
     try {
         const response = await fetch("/rise-data");
@@ -197,7 +197,7 @@ async function fetchRiseData() {
         let siteMap = {};
         let maxAlis = {};
         let minSatis = {};
-        // 📌 JSON Verisini Site ve Sunucu Bazında Grupla
+        // 📌 JSON data 
         data.forEach(veri => {
             let serverKey = veri.server.trim().toUpperCase();
             let satisFiyat = parseFloat(veri.satis);
@@ -208,12 +208,12 @@ async function fetchRiseData() {
             }
             siteMap[veri.site][serverKey] = { satis: satisFiyat, alis: alisFiyat };
 
-            // 🔥 En yüksek alış fiyatını bul
+            // 🔥 Max buy price
             if (!maxAlis[serverKey] || alisFiyat > maxAlis[serverKey]) {
                 maxAlis[serverKey] = alisFiyat;
             }
 
-            // 💰 En düşük satış fiyatını bul
+            // 💰 Lowest sell price
             if (!minSatis[serverKey] || satisFiyat < minSatis[serverKey]) {
                 minSatis[serverKey] = satisFiyat;
             }
@@ -252,20 +252,20 @@ async function fetchRiseData() {
         console.error("Hata:", error);
     }
 }
- // 📌 **Farklı Güncelleme Aralıkları Tanımlama**
+
 function fetchDataKnightAndRise() {
-    fetchKnightData(); // Knight Online verisini 2 dakikada bir güncelle
-    fetchRiseData();   // Rise Online verisini 2 dakikada bir güncelle
+    fetchKnightData(); 
+    fetchRiseData();   
 }
 
 function fetchDataNowa() {
-    fetchNowaData(); // Nowa Online verisini 15 dakikada bir güncelle
+    fetchNowaData();
 }
 
-// **Sayfa yüklendiğinde verileri getir**
-fetchDataKnightAndRise(); // Başlangıçta Knight ve Rise verisini getir
-fetchDataNowa();          // Başlangıçta Nowa verisini getir
 
-// **Farklı zaman aralıklarıyla güncelleme başlat**
-setInterval(fetchDataKnightAndRise, 120000); // 2 dakika (120000 ms)  
-setInterval(fetchDataNowa, 900000);          // 15 dakika (900000 ms)
+fetchDataKnightAndRise(); 
+fetchDataNowa();         
+
+//Update data in diffrent times
+setInterval(fetchDataKnightAndRise, 120000); // 2 min(120000 ms)  
+setInterval(fetchDataNowa, 900000);          // 15 min (900000 ms)
